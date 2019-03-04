@@ -47,14 +47,18 @@ const defaultOptions = {
  *
  * Read https://www.npmjs.com/package/npm-check-updates if you don't know what it is.
  *
- * Usually, you run updates as follow
+ * Usually, you run updates as follow:
+ *
+ * For testing:
  *
  * ```bash
- * $ npx npm-check-updates -a
- * // or install globally
- * $ npm install -g npm-check-updates
- * // then run it from global
- * $ ncu -a
+ * $ npx ncu
+ * ```
+ *
+ * Writing to `package.json`:
+ *
+ * ```bash
+ * $ npx ncu -a
  * ```
  *
  * By default, it will try to read it's configuration from `.ncurc.js`, this is where we hook this configuration:
@@ -66,20 +70,54 @@ const defaultOptions = {
  *
  * This configuration will allow you to use:
  *
- * - **local extension**: Use in your `package.json` the key `ncurc` within a rollup-umd project to inject ncu configuration per project
- * - **dependency extension**: Use a dependency extension within a rollup-umd project to manage ncu configuration across a set of projects.
+ * - **Local extension**: In your `package.json` we read `ncurc` within a rollup-umd project to inject ncu configuration per project
+ * - **Dependency extension**: Use a dependency extension within a rollup-umd project to manage ncu configuration across a set of projects.
  *
- * To use the local extension, simply add `npmrc` in your `package.json`, it will be used.
+ * ## Local extension
  *
- * To create a dependency extension, all you need is to publish a npm package with:
+ * Simply add `npmrc` in your `package.json`:
  *
- * - A `ncurc` key containing the configuration in the `package.json` OR
+ * ```diff
+ * + "ncurc": {
+ * +   "reject": [
+ * +     "react-styleguidist"
+ * +   ]
+ * + }
+ * ```
+ *
+ * This will for example add `react-styleguidist` to the ignored package when doing `npx ncu -a` in your project.
+ *
+ * ## Dependency extension
+ *
+ * This is a dependency listed in your `package.json`.
+ *
+ * To create a dependency extension, all you need is to publish a npm package with the following requirements:
+ *
+ * - A `ncurc` key containing the configuration in the `package.json` (as the previous example)
+ *
+ * **Or** if it only serve a ncu configuration:
+ *
  * - The ncu configuration as default exports **AND** `ncu` in your package name, it will be merge with ours.
+ *
+ * ```js static
+ * export default {
+ *   reject: ['react-styleguidist'],
+ * };
+ * ```
  *
  * These a required **keywords** that **MUST** be set in your `package.json` in order to be detected by the auto configuration:
  *
  * - The `keywords` of your dependency must have: `ncu`.
  * - The `keywords` of your dependency must have this package name: `$PACKAGE_NAME`
+ *
+ * ```diff
+ *  "keywords": [
+ * +   "ncu",
+ * +   "$PACKAGE_NAME",
+ * ],
+ * ```
+ *
+ * Dependency extension will be read by `createConfig` and logging will appear for each detection.
  *
  * @param {object} [config={}] - local ncu configuration, if you want something
  * @param {object} [options={}] - options of create config

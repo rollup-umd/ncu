@@ -1,3 +1,3 @@
 ```bash
-$ npm install @yeutech/rollup-umd --save
+$ npm install @yeutech/rollup-umd --save-dev
 ```

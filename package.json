@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
   "module": "dist/@rollup-umd/ncu.esm.js",
-  "homepage": "https://rollup-umd.yeutech.com/ncu",
+  "homepage": "https://rollup-umd.github.io/ncu",
   "engines": {
     "node": ">=8"
   },
@@ -38,15 +38,14 @@
     "prestyleguide": "npm run jsdoc",
     "styleguide": "styleguidist server",
     "prestyleguide:build": "npm run jsdoc && ./styleguide/prepare.sh",
-    "styleguide:build": "styleguidist build",
-    "postinstall": "node -e \"console.log('\\u001b[31m@rollup-umd/ncu is deprecated, use @rollup-umd/ncu instead.')\" || exit 0"
+    "styleguide:build": "styleguidist build"
   },
   "repository": {
     "type": "git",
-    "url": "https://module.kopaxgroup.com/rollup-umd/ncu.git"
+    "url": "https://github.com/rollup-umd/ncu.git"
   },
   "bugs": {
-    "url": "https://module.kopaxgroup.com/rollup-umd/ncu/issues"
+    "url": "https://github.com/rollup-umd/ncu/issues"
   },
   "keywords": [
     "js",
@@ -159,18 +158,11 @@
     "@rollup-umd/documentation": "^1.3.16",
     "@rollup-umd/rollup": "^1.0.7",
     "@semantic-release/changelog": "^3.0.2",
-    "@semantic-release/exec": "^3.3.2",
     "@semantic-release/git": "^7.0.8",
-    "@semantic-release/gitlab": "^3.1.2",
+    "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.4",
     "@yeutech-lab/documentation": "^1.0.17",
     "@yeutech-lab/test-polyfill": "^1.1.4",
-    "@yeutech/rollup-umd-ci-build": "^1.0.5",
-    "@yeutech/rollup-umd-ci-deploy": "^1.0.7",
-    "@yeutech/rollup-umd-ci-release": "^1.0.14",
-    "@yeutech/rollup-umd-ci-release-transitive": "^1.2.9",
-    "@yeutech/rollup-umd-ci-test": "^1.0.6",
-    "@yeutech/rollup-umd-scripts": "^2.0.11",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
@@ -204,32 +196,20 @@
   },
   "peerDependencies": {},
   "publishConfig": {
-    "registry": "https://npm.kopaxgroup.com",
-    "tag": "latest"
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest",
+    "access": "public"
   },
   "release": {
     "branch": "master",
-    "success": false,
-    "fail": false,
     "npmPublish": true,
     "verifyConditions": [
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npx @yeutech/rollup-umd-ci-release-transitive verify"
-      },
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
-      {
-        "path": "@semantic-release/gitlab",
-        "gitlabUrl": "https://module.kopaxgroup.com"
-      }
+      "@semantic-release/github"
     ],
     "prepare": [
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npx @yeutech/rollup-umd-ci-release-transitive prepare"
-      },
       "@semantic-release/changelog",
       "@semantic-release/npm",
       {
@@ -246,12 +226,49 @@
     "publish": [
       "@semantic-release/npm",
       {
-        "path": "@semantic-release/gitlab",
-        "gitlabUrl": "https://module.kopaxgroup.com"
-      },
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npx @yeutech/rollup-umd-ci-release-transitive publish ${nextRelease.version}"
+        "path": "@semantic-release/github",
+        "assets": [
+          {
+            "path": "package.json"
+          },
+          {
+            "path": "LICENSE.md"
+          },
+          {
+            "path": "CHANGELOG.md"
+          },
+          {
+            "path": "README.md"
+          },
+          {
+            "path": "dist/*.esm.js",
+            "label": "ES module"
+          },
+          {
+            "path": "dist/*.esm.js.map",
+            "label": "ES module source map"
+          },
+          {
+            "path": "dist/*.min.js",
+            "label": "UMD compressed"
+          },
+          {
+            "path": "dist/*.min.js.map",
+            "label": "UMD compressed source map"
+          },
+          {
+            "path": "dist/*.cjs.min.js",
+            "label": "CJS compressed"
+          },
+          {
+            "path": "dist/*.cjs.min.js.map",
+            "label": "CJS compressed source map"
+          },
+          {
+            "path": "lib/*.js",
+            "label": "CJS folder"
+          }
+        ]
       }
     ]
   },
@@ -309,24 +326,5 @@
     ]
   },
   "declinationId": "js",
-  "contributors": [],
-  "transitive": {
-    "name": "ncu",
-    "scope": "rollup-umd",
-    "scopedName": "@rollup-umd/ncu",
-    "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
-    "module": "dist/@rollup-umd/ncu.esm.js",
-    "homepage": "https://rollup-umd.github.io/ncu",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/rollup-umd/ncu.git"
-    },
-    "bugs": {
-      "url": "https://github.com/rollup-umd/ncu/issues"
-    },
-    "publishConfig": {
-      "access": "public",
-      "registry": "https://registry.npmjs.org"
-    }
-  }
+  "contributors": []
 }

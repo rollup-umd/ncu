@@ -55,5 +55,9 @@
       "name": "Code of conduct",
       "content": "CODE_OF_CONDUCT.md"
     }
-  ]
+  ],
+  "ribbon": {
+    "url": "https://github.com/rollup-umd/ncu",
+    "text": "Fork us on GitHub"
+  }
 }

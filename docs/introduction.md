@@ -1,10 +1,8 @@
-[![build status](https://module.kopaxgroup.com/dev-tools/rollup-umd/badges/v2.4.9/build.svg)](https://module.kopaxgroup.com/dev-tools/rollup-umd/commits/v2.4.9)
-[![coverage report](https://module.kopaxgroup.com/dev-tools/rollup-umd/badges/v2.4.9/coverage.svg)](https://module.kopaxgroup.com/dev-tools/rollup-umd/commits/v2.4.9)
+[![Build Status](https://travis-ci.org/rollup-umd/ncu.svg?branch=master)](https://travis-ci.org/rollup-umd/ncu)
+[![npm Version](https://img.shields.io/npm/v/@rollup-umd/ncu.svg?style=flat)](https://www.npmjs.com/package/@rollup-umd/ncu)
+[![License](https://img.shields.io/npm/l/@rollup-umd/ncu.svg?style=flat)](https://www.npmjs.com/package/@rollup-umd/ncu)
+[![npm Version](https://img.shields.io/node/v/@rollup-umd/ncu.svg?style=flat)](https://www.npmjs.com/package/@rollup-umd/ncu)
+[![Module formats](https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat)](https://www.npmjs.com/package/@rollup-umd/ncu)
 
-![image](https://img.shields.io/badge/version-2.4.9-green.svg)
-![image](https://img.shields.io/badge/node-v10.10.0-brightgreen.svg)
-![image](https://img.shields.io/badge/npm-6.5.0-red.svg)
-![image](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-![image](private)
 
-The adaptive module boilerplate made to simplify ES6 and other modules development in continuous integration..
+$PACKAGE_DESCRIPTION

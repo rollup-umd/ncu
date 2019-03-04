@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/rollup-umd/ncu/compare/v1.0.2...v1.0.3) (2019-03-04)
+
+
+### Bug Fixes
+
+* **createConfig:** display logging if reject list is on ([64ab6f1](https://github.com/rollup-umd/ncu/commit/64ab6f1))
+
 ## [1.0.2](https://github.com/rollup-umd/ncu/compare/v1.0.1...v1.0.2) (2019-03-04)
 
 

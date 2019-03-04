@@ -5,30 +5,32 @@ function autoconfig(opts, pkg, thisPkg, base) {
   const autoconf = { reject: [] };
   if (!opts.disableAutoConf) {
     // get them dynamically, it must include documentation in the name, and be in devDependencies or dependencies
-    const found = false;
     [pkg.dependencies || {}, pkg.devDependencies || {}].forEach((o) => {
       Object.keys(o).forEach((dep) => {
-        if (dep.includes('ncu') && !dep.includes(thisPkg.name)) {
-          const { keywords } = require(join(base, 'node_modules', dep, 'package.json')); // eslint-disable-line
-          if (keywords && keywords.indexOf(thisPkg.name) !== -1) {
+        if (!dep.includes(thisPkg.name)) {
+          const { keywords, ncurc } = require(join(base, 'node_modules', dep, 'package.json')); // eslint-disable-line
+          let ncu = ncurc;
+          if (!ncu && dep.includes('ncu') && keywords && keywords.indexOf(thisPkg.name) !== -1) {
             if (existsSync(join(base, 'node_modules', dep))) {
               try {
-                const { reject: autoconfReject, autoconfRest } = require(join(base, 'node_modules', dep)); // eslint-disable-line global-require
-                autoconf.reject = [...new Set(
-                  ...(autoconf.reject || []),
-                  ...(autoconfReject || []),
-                )];
-                Object.assign(autoconf, autoconfRest);
+                ncu = require(join(base, 'node_modules', dep)); // eslint-disable-line global-require
               } catch (e) {
-                console.log(`[Warning]: ${dep} cannot require ncu configuration`);
+                console.log(`[Warning]: ${dep} cannot find ncu configuration`); // eslint-disable-line no-console
               }
             }
           }
+          if (ncu) {
+            console.log(`Auto configuration with ${dep}`); // eslint-disable-line no-console
+            const { reject: autoconfReject, autoconfRest } = ncu || {}; // eslint-disable-line global-require
+            autoconf.reject = [...new Set([
+              ...(autoconf.reject || []),
+              ...(autoconfReject || []),
+            ])];
+
+            Object.assign(autoconf, autoconfRest);
+          }
         }
       });
-      if (found) {
-        console.log(`Auto configuration with ${found}`); // eslint-disable-line no-console
-      }
     });
   }
   return autoconf;
@@ -36,7 +38,6 @@ function autoconfig(opts, pkg, thisPkg, base) {
 
 const defaultOptions = {
   disableAutoConf: false,
-  extensionFile: '.ncurc.ext.json',
 };
 
 /**
@@ -65,19 +66,24 @@ const defaultOptions = {
  *
  * This configuration will allow you to use:
  *
- * - **local extension**: Use a new file within a rollup-umd project that will be used to inject ncu configuration per project/
+ * - **local extension**: Use in your `package.json` the key `ncurc` within a rollup-umd project to inject ncu configuration per project
  * - **dependency extension**: Use a dependency extension within a rollup-umd project to manage ncu configuration across a set of projects.
  *
+ * To use the local extension, simply add `npmrc` in your `package.json`, it will be used.
  *
  * To create a dependency extension, all you need is to publish a npm package with:
  *
- * - The ncu configuration as default exports, it will be merge with ours.
- * - Set in the `name` and add in `keywords` of your dependency the string: `ncu`.
+ * - A `ncurc` key containing the configuration in the `package.json` OR
+ * - The ncu configuration as default exports **AND** `ncu` in your package name, it will be merge with ours.
  *
- * @param {object} [config={}] - ncu configuration
+ * These a required **keywords** that **MUST** be set in your `package.json` in order to be detected by the auto configuration:
+ *
+ * - The `keywords` of your dependency must have: `ncu`.
+ * - The `keywords` of your dependency must have this package name: `$PACKAGE_NAME`
+ *
+ * @param {object} [config={}] - local ncu configuration, if you want something
  * @param {object} [options={}] - options of create config
  * @param {boolean} [options.disableAutoConfig=false] - Disable auto configuration from extensions modules
- * @param {string} [options.extensionFile=.ncurrc.ext.json] - Location of the local extension file
  * @return {object} npm check updates configuration object
  */
 export function createConfig(config = {}, options = {}) {
@@ -92,8 +98,8 @@ export function createConfig(config = {}, options = {}) {
   const base = existsSync(join(cwd, 'package.json')) ? join(cwd) : join(__dirname, '..');
   const pkg = require(join(base, 'package.json')); // eslint-disable-line global-require
 
-  // allow config from extension file
-  const { reject: userExtReject, ...restUserExtConfig } = existsSync(join(base, opts.extensionFile)) ? require(join(base, opts.extensionFile)) : {}; // eslint-disable-line global-require
+  // allow config from extension in package.json
+  const { reject: userExtReject, ...restUserExtConfig } = pkg.ncurc || {}; // eslint-disable-line global-require
 
   // just for generating it's own documentation, we need it.
   const thisPkgPath = join(__dirname, '../package.json');
@@ -102,13 +108,16 @@ export function createConfig(config = {}, options = {}) {
   // allow config from extension module
   const { reject: autoConfigReject, ...restAutoConfig } = autoconfig(opts, pkg, thisPkg, base);
 
+  const reject = [...new Set([
+    ...(userReject || []),
+    ...(userExtReject || []),
+    ...(autoConfigReject || []),
+  ])];
+
+  console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
   return {
-    upgrade: true,
-    reject: [...new Set([
-      ...(userReject || []),
-      ...(userExtReject || []),
-      ...(autoConfigReject || []),
-    ])],
+    // upgrade: true, // stop due to https://github.com/tjunnone/npm-check-updates/issues/481#issuecomment-469081174
+    reject,
     ...Object.assign(
       {},
       restUserConfig,

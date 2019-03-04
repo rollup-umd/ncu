@@ -1,10 +1,10 @@
 {
-  "name": "@yeutech/ncu",
+  "name": "@rollup-umd/ncu",
   "version": "0.0.0-development",
   "description": "npm-check-updates rollup-umd preconfiguration",
   "main": "lib/index.js",
-  "jsnext:main": "dist/@yeutech/ncu.esm.js",
-  "module": "dist/@yeutech/ncu.esm.js",
+  "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
+  "module": "dist/@rollup-umd/ncu.esm.js",
   "homepage": "https://rollup-umd.yeutech.com/ncu",
   "engines": {
     "node": ">=8"
@@ -13,7 +13,7 @@
     "IE >= 9",
     "last 2 versions"
   ],
-  "author": "Dimitri Kopriwa <dimitri.kopriwa@yeutech> (https://github.com/kopax)",
+  "author": "Dimitri Kopriwa <dimitri.kopriwa@yeutech.vn> (https://github.com/kopax)",
   "scripts": {
     "prebuild": "npm run build:clean",
     "build": "npm run build:lib && npm run build:dist",
@@ -52,7 +52,7 @@
     "yeutech",
     "ncu"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb-base",
@@ -198,18 +198,19 @@
     "webpack": "^4.29.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.4"
+    "@babel/runtime": "^7.3.4",
+    "npm-check-updates": "^2.15.0"
   },
   "peerDependencies": {},
   "publishConfig": {
-    "tag": "latest",
-    "registry": "https://npm.kopaxgroup.com"
+    "registry": "https://npm.kopaxgroup.com",
+    "tag": "latest"
   },
   "release": {
     "branch": "master",
     "success": false,
     "fail": false,
-    "npmPublish": false,
+    "npmPublish": true,
     "verifyConditions": [
       {
         "path": "@semantic-release/exec",
@@ -290,10 +291,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 100,
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
+        "statements": 40,
+        "branches": 40,
+        "functions": 40,
+        "lines": 40
       }
     },
     "moduleDirectories": [
@@ -308,5 +309,23 @@
   },
   "declinationId": "js",
   "contributors": [],
-  "private": true
+  "transitive": {
+    "name": "ncu",
+    "scope": "rollup-umd",
+    "scopedName": "@rollup-umd/ncu",
+    "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
+    "module": "dist/@rollup-umd/ncu.esm.js",
+    "homepage": "https://rollup-umd.github.io/ncu",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/rollup-umd/ncu.git"
+    },
+    "bugs": {
+      "url": "https://github.com/rollup-umd/ncu/issues"
+    },
+    "publishConfig": {
+      "access": "public",
+      "registry": "https://registry.npmjs.org"
+    }
+  }
 }

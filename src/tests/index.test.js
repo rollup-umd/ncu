@@ -1,39 +1,15 @@
-/**
- * Testing example
- */
-import DemoClass from '../index';
+import { createConfig } from '../index';
 
-describe('DemoClass', () => {
-  let demoClass;
-  beforeEach(() => {
-    demoClass = new DemoClass();
+describe('createConfig', () => {
+  it('should have reject array', () => {
+    const config = createConfig();
+    expect(config.reject.length).toBeDefined();
+    expect(config.reject instanceof Array).toBe(true);
   });
-  it('should be the DemoClass', () => {
-    expect(demoClass instanceof DemoClass).toBe(true);
-  });
-  it('should be the static test', () => {
-    expect(demoClass.getTestStatic()).toBe('This is a static test');
-  });
-  it('should be the test attribute', () => {
-    expect(demoClass.getTestAttribute()).toBe('This is a test attribute');
-  });
-  it('should set the test attribute', () => {
-    demoClass.setTestAttribute('test');
-    expect(demoClass.getTestAttribute()).toBe('test');
-  });
-  it('should include a in list', () => {
-    expect(demoClass.hasInList('a')).toBe(true);
-  });
-  it('should get replaced env', () => {
-    expect(demoClass.getReplacedEnv()).toBe('test');
-  });
-  it('should get rest from spread', () => {
-    expect(demoClass.getIsSpreadActive()).toEqual(true);
-  });
-  it('should get rest from spread', () => {
-    expect(demoClass.getRest()).toEqual({
-      isTestLiving: true,
-      list: ['a', 'b'],
+  it('should accept user config', () => {
+    const config = createConfig({
+      reject: ['something'],
     });
+    expect(config.reject.includes('something')).toBe(true);
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@rollup-umd/ncu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "npm-check-updates rollup-umd preconfiguration",
   "main": "lib/index.js",
   "jsnext:main": "dist/@rollup-umd/ncu.esm.js",

@@ -1,6 +1,6 @@
 {
   "name": "@rollup-umd/ncu",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "npm-check-updates rollup-umd preconfiguration",
   "main": "lib/index.js",
   "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
@@ -38,7 +38,8 @@
     "prestyleguide": "npm run jsdoc",
     "styleguide": "styleguidist server",
     "prestyleguide:build": "npm run jsdoc && ./styleguide/prepare.sh",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "postinstall": "node -e \"console.log('\\u001b[31m@rollup-umd/ncu is deprecated, use @rollup-umd/ncu instead.')\" || exit 0"
   },
   "repository": {
     "type": "git",

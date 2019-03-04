@@ -308,24 +308,5 @@
     ]
   },
   "declinationId": "js",
-  "contributors": [],
-  "transitive": {
-    "name": "ncu",
-    "scope": "rollup-umd",
-    "scopedName": "@rollup-umd/ncu",
-    "jsnext:main": "dist/@rollup-umd/ncu.esm.js",
-    "module": "dist/@rollup-umd/ncu.esm.js",
-    "homepage": "https://rollup-umd.github.io/ncu",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/rollup-umd/ncu.git"
-    },
-    "bugs": {
-      "url": "https://github.com/rollup-umd/ncu/issues"
-    },
-    "publishConfig": {
-      "access": "public",
-      "registry": "https://registry.npmjs.org"
-    }
-  }
+  "contributors": []
 }

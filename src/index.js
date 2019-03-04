@@ -152,7 +152,9 @@ export function createConfig(config = {}, options = {}) {
     ...(autoConfigReject || []),
   ])];
 
-  console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
+  if (reject.length) {
+    console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
+  }
   return {
     // upgrade: true, // stop due to https://github.com/tjunnone/npm-check-updates/issues/481#issuecomment-469081174
     reject,

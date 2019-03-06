@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/rollup-umd/ncu/compare/v1.0.3...v1.0.4) (2019-03-06)
+
+
+### Bug Fixes
+
+* **doc:** install command ([4126dbb](https://github.com/rollup-umd/ncu/commit/4126dbb))
+* **doc:** local extension ([e4d912c](https://github.com/rollup-umd/ncu/commit/e4d912c))
+
 ## [1.0.3](https://github.com/rollup-umd/ncu/compare/v1.0.2...v1.0.3) (2019-03-04)
 
 

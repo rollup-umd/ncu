@@ -75,7 +75,7 @@ const defaultOptions = {
  *
  * ## Local extension
  *
- * Simply add `npmrc` in your `package.json`:
+ * Simply add `ncurc` in your `package.json`:
  *
  * ```diff
  * + "ncurc": {

@@ -191,8 +191,7 @@
     "webpack": "^4.29.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.4",
-    "npm-check-updates": "^2.15.0"
+    "npm-check-updates": "^3.0.1"
   },
   "peerDependencies": {},
   "publishConfig": {

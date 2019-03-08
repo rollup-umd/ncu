@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/rollup-umd/ncu/compare/v1.0.4...v1.0.5) (2019-03-08)
+
+
+### Bug Fixes
+
+* **dependencies:** Upgrade npm-check-updates to v3.0.1 ([7779b2c](https://github.com/rollup-umd/ncu/commit/7779b2c))
+
 ## [1.0.4](https://github.com/rollup-umd/ncu/compare/v1.0.3...v1.0.4) (2019-03-06)
 
 

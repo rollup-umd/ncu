@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/rollup-umd/ncu/compare/v1.0.5...v1.0.6) (2019-03-11)
+
+
+### Bug Fixes
+
+* **dependencies:** remove react-styleguidist already present in @rollup-umd/documnetation ([9ff8ae6](https://github.com/rollup-umd/ncu/commit/9ff8ae6))
+* **dependencies:** upgrade all dependencies ([d456e6d](https://github.com/rollup-umd/ncu/commit/d456e6d))
+
 ## [1.0.5](https://github.com/rollup-umd/ncu/compare/v1.0.4...v1.0.5) (2019-03-08)
 
 

@@ -1,3 +1,33 @@
+## [1.0.5](https://github.com/rollup-umd/ncu/compare/v1.0.4...v1.0.5) (2019-03-08)
+
+
+### Bug Fixes
+
+* **dependencies:** Upgrade npm-check-updates to v3.0.1 ([7779b2c](https://github.com/rollup-umd/ncu/commit/7779b2c))
+
+## [1.0.4](https://github.com/rollup-umd/ncu/compare/v1.0.3...v1.0.4) (2019-03-06)
+
+
+### Bug Fixes
+
+* **doc:** install command ([4126dbb](https://github.com/rollup-umd/ncu/commit/4126dbb))
+* **doc:** local extension ([e4d912c](https://github.com/rollup-umd/ncu/commit/e4d912c))
+
+## [1.0.3](https://github.com/rollup-umd/ncu/compare/v1.0.2...v1.0.3) (2019-03-04)
+
+
+### Bug Fixes
+
+* **createConfig:** display logging if reject list is on ([64ab6f1](https://github.com/rollup-umd/ncu/commit/64ab6f1))
+
+## [1.0.2](https://github.com/rollup-umd/ncu/compare/v1.0.1...v1.0.2) (2019-03-04)
+
+
+### Bug Fixes
+
+* **createConfig:** improve documentation ([6e64f6d](https://github.com/rollup-umd/ncu/commit/6e64f6d))
+* **createConfig:** Now using package.json for local extension and allowing in dependency extensions using keywords ([3960677](https://github.com/rollup-umd/ncu/commit/3960677))
+
 ## [1.0.1](https://github.com/rollup-umd/ncu/compare/v1.0.0...v1.0.1) (2019-03-04)
 
 

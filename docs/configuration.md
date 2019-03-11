@@ -17,5 +17,5 @@ Run the upgrade within a project:
 # test
 $ npx ncu
 # write change
-$ npx ncu -a
+$ npx ncu -u
 ```

@@ -17,7 +17,7 @@ $ npx ncu
 Writing to `package.json`:
 
 ```bash
-$ npx ncu -a
+$ npx ncu -u
 ```
 
 By default, it will try to read it's configuration from `.ncurc.js`, this is where we hook this configuration:
@@ -44,7 +44,7 @@ Simply add `npmrc` in your `package.json`:
 + }
 ```
 
-This will for example add `react-styleguidist` to the ignored package when doing `npx ncu -a` in your project.
+This will for example add `react-styleguidist` to the ignored package when doing `npx ncu -u` in your project.
 
 ## Dependency extension
 

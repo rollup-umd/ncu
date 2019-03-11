@@ -33,6 +33,4 @@ rollup.config.js
 /lib/**/*.md
 /internals
 **/tests/*.test.js
-.ncurc.ext.json
 .ncurc.js
-.ncurc

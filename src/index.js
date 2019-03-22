@@ -22,7 +22,7 @@ function autoconfig(opts, pkg, thisPkg, base) {
             }
           }
           if (ncu) {
-            i === 1 && console.log(`Auto configuration with ${dep}`); // eslint-disable-line no-console
+            i === 1 && console.log(`Auto configuration with ${dep}`); // eslint-disable-line no-console, no-unused-expressions
             const { reject: autoconfReject, autoconfRest } = ncu || {}; // eslint-disable-line global-require
             autoconf.reject = [...new Set([
               ...(autoconf.reject || []),
@@ -162,7 +162,7 @@ export function createConfig(config = {}, options = {}) {
   ])];
 
   if (reject.length) {
-    i === 1 && console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
+    i === 1 && console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console, no-unused-expressions
   }
   return {
     // upgrade: true, // stop due to https://github.com/tjunnone/npm-check-updates/issues/481#issuecomment-469081174

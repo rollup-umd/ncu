@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/rollup-umd/ncu/compare/v1.0.8...v1.0.9) (2019-03-22)
+
+
+### Bug Fixes
+
+* **dependencies:** upgrade all dependencies ([61d673c](https://github.com/rollup-umd/ncu/commit/61d673c))
+
 ## [1.0.8](https://github.com/rollup-umd/ncu/compare/v1.0.7...v1.0.8) (2019-03-11)
 
 

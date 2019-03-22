@@ -11,11 +11,22 @@ Add to `.npmignore`:
 + .ncurc.js
 ```
 
-Run the upgrade within a project:
+## Run dependencies upgrade within a project
+
+**Test**
 
 ```bash
-# test
 $ npx ncu
-# write change
+```
+
+**Write to `package.json` the upgrade of `dependencies` and `devDependencies`**
+
+```bash
+$ npx ncu --dep prod,dev
+```
+
+**Write to `package.json` the upgrade of `dependencies`, `devDependencies`, `peerDependencies` and `optionalDependencies`**
+
+```bash
 $ npx ncu -u
 ```

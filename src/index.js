@@ -1,6 +1,8 @@
 const { existsSync } = require('fs');
 const { join } = require('path');
 
+let i = 0; // necessary other it will log twice
+
 function autoconfig(opts, pkg, thisPkg, base) {
   const autoconf = { reject: [] };
   if (!opts.disableAutoConf) {
@@ -20,7 +22,7 @@ function autoconfig(opts, pkg, thisPkg, base) {
             }
           }
           if (ncu) {
-            console.log(`Auto configuration with ${dep}`); // eslint-disable-line no-console
+            i === 1 && console.log(`Auto configuration with ${dep}`); // eslint-disable-line no-console
             const { reject: autoconfReject, autoconfRest } = ncu || {}; // eslint-disable-line global-require
             autoconf.reject = [...new Set([
               ...(autoconf.reject || []),
@@ -49,13 +51,19 @@ const defaultOptions = {
  *
  * Usually, you run updates as follow:
  *
- * For testing:
+ * Test:
  *
  * ```bash
  * $ npx ncu
  * ```
  *
- * Writing to `package.json`:
+ * Write to `package.json` the upgrade of `dependencies` and `devDependencies`
+ *
+ * ```bash
+ * $ npx ncu --dep prod,dev
+ * ```
+ *
+ * Write to `package.json` the upgrade of `dependencies`, `devDependencies`, `peerDependencies`, `optionalDependencies`:
  *
  * ```bash
  * $ npx ncu -u
@@ -125,6 +133,7 @@ const defaultOptions = {
  * @return {object} npm check updates configuration object
  */
 export function createConfig(config = {}, options = {}) {
+  i += 1;
   // allow configuration from config
   const { reject: userReject, ...restUserConfig } = config;
   // general options
@@ -153,7 +162,7 @@ export function createConfig(config = {}, options = {}) {
   ])];
 
   if (reject.length) {
-    console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
+    i === 1 && console.log(`Rejected: ${reject.join(', ')} will be ignored by npm-check-updates.`); // eslint-disable-line no-console
   }
   return {
     // upgrade: true, // stop due to https://github.com/tjunnone/npm-check-updates/issues/481#issuecomment-469081174

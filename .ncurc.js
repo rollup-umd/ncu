@@ -1,2 +1,2 @@
-const { createConfig } = require('@rollup-umd/ncu');
+const { createConfig } = require('./lib');
 module.exports = createConfig();

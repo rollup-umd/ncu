@@ -1,3 +1,3 @@
 ```bash
-$ npm install @rollup-umd/intl --save-dev
+npm install $PACKAGE_NAME --save-dev
 ```
